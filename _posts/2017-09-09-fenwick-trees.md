@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Binary indexed trees/ Fenwick trees 
+title: Binary indexed trees/ Fenwick trees
+author: "Kumar Abhinav" 
 ---
 
 – Range Queries with Point/Range Updates
@@ -90,4 +91,3 @@ template<typename T>class BIT
     }  
 };  
 ```
-[fenwick-trees]: 
