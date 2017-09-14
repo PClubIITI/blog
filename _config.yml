@@ -40,7 +40,7 @@ google_analytics: UA-106481637-1
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: https://pclubiiti.github.io/blog.html
+url: https://pclubiiti.github.io/blog
 
 # allows lan devices to view 
 host: 0.0.0.0
@@ -48,7 +48,7 @@ host: 0.0.0.0
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
-baseurl: ""
+baseurl: "/blog"
 
 #
 # !! You don't need to change any of the configuration flags below !!
