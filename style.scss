@@ -176,7 +176,7 @@ img {
   }
 
   img {
-    border-radius: 50%;
+    
   }
 }
 
@@ -194,15 +194,15 @@ img {
   margin: 0;
   color: $white;
   cursor: pointer;
-  font-family: $helveticaNeue;
-  font-weight: 300;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 1em;
   font-size: 28px;
   letter-spacing: 1px;
 }
 
 .site-description {
   margin: -5px 0 0 0;
-  color: $white;
+  color: lightGray;
   font-size: 16px;
 
   @include mobile {
@@ -215,6 +215,7 @@ nav {
   margin-top: 23px; // @TODO: Vertically middle align
   font-family: $helveticaNeue;
   font-size: 18px;
+  
 
   @include mobile {
     float: none;
@@ -227,7 +228,7 @@ nav {
     margin-left: 20px;
     color: $white;
     text-align: right;
-    font-weight: 300;
+    font-weight: 1em;
     letter-spacing: 1px;
 
     @include mobile {
@@ -285,6 +286,9 @@ footer {
   i{
     padding-right: 0.5em;
     padding-left: 0.5em;
+  }
+  a:hover{
+    color:#2C3E50;
   }
 }
 
