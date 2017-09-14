@@ -24,7 +24,7 @@ Given an array A[1..N] , perform the following operations
 
 Where Q is the number of Queries to perform
 
-Knowledge of solving such problems using Fenwick Trees is a prerequisite to this tutorial. You can refer [this](fenwick-trees) tutorial on Topcoder to learn basics of Fenwick Trees.
+Knowledge of solving such problems using Fenwick Trees is a prerequisite to this tutorial. You can refer [this](https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/) tutorial on Topcoder to learn basics of Fenwick Trees.
 
 1) Range Update Point Query
 We’ll be solving the following problem in this tutorial:-
@@ -90,5 +90,4 @@ template<typename T>class BIT
     }  
 };  
 ```
-
-[fenwick-trees]: https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+[fenwick-trees]: 
