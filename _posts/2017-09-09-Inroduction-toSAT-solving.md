@@ -1,6 +1,15 @@
-## Inroduction to SAT solving using Z3
+---
 
-### Little theory you should get (or maybe not)
+layout: post
+title: "Inroduction to SAT solving using Z3"
+description: "Little theory you should get (or maybe not)"
+date: 2017-08-23
+author: "Aditya Jain"
+tags: [tech, code, tutorial]
+comments: true
+share: true
+
+---
 
 #### SAT problem
 In Computer Science a SAT(satisfiability) problem is defined as follows

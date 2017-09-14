@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inroduction to SAT solving using Z3 – The Programming Club</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="SAT problem
+In Computer Science a SAT(satisfiability) problem is defined as follows
+
+  Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.
+
+
+" />
+    <meta property="og:description" content="SAT problem
+In Computer Science a SAT(satisfiability) problem is defined as follows
+
+  Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.
+
+
+" />
+    
+    <meta name="author" content="The Programming Club" />
+
+    
+    <meta property="og:title" content="Inroduction to SAT solving using Z3" />
+    <meta property="twitter:title" content="Inroduction to SAT solving using Z3" />
+    
+    <meta name="theme-color" content="#2C3E50">
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon big" sizes="192x192" href="big_icon.png ">
+    <link rel="stylesheet" type="text/css" href="/blog/style.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/font-awesome/css/font-awesome.min.css" />
+    <link rel="alternate" type="application/rss+xml" title="The Programming Club - Indian Institute of Technology, Indore" href="/blog/feed.xml" />
+    <meta name="mobile-web-app-capable" content="yes">
+   
+ <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Inroduction to SAT solving using Z3 | The Programming Club</title>
+<meta property="og:title" content="Inroduction to SAT solving using Z3" />
+<meta name="author" content="Aditya Jain" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Little theory you should get (or maybe not)" />
+<meta property="og:description" content="Little theory you should get (or maybe not)" />
+<link rel="canonical" href="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/" />
+<meta property="og:url" content="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/" />
+<meta property="og:site_name" content="The Programming Club" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-08-23T00:00:00+05:30" />
+<script type="application/ld+json">
+{"name":null,"description":"Little theory you should get (or maybe not)","author":{"@type":"Person","name":"Aditya Jain"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/","publisher":null,"image":null,"headline":"Inroduction to SAT solving using Z3","dateModified":"2017-08-23T00:00:00+05:30","datePublished":"2017-08-23T00:00:00+05:30","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://avatars3.githubusercontent.com/u/31797871"/></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">The Programming Club</a></h1>
+            <p class="site-description">Indian Institute of Technology, Indore</p>
+          </div>
+
+          <nav>
+            <a href="/blog/">Blog</a>
+            <a href="/projects.html">Projects</a>
+            <a href="/about.html">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Inroduction to SAT solving using Z3</h1>
+  <h4>Aditya Jain</h4>
+  <div class="date">
+    August 23, 2017
+  </div>
+  
+  <div class="entry">
+    <h4 id="sat-problem">SAT problem</h4>
+<p>In Computer Science a SAT(satisfiability) problem is defined as follows</p>
+<blockquote>
+  <p>Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.</p>
+</blockquote>
+
+<p>Its an NP complete problem. And its applications are vast lying not just in CS.</p>
+
+<h4 id="satisfiability-modulo-theories-smt">Satisfiability Modulo Theories (SMT)</h4>
+
+<p>Satisfiability modulo theories (SMT) generalizes boolean satisfiability (SAT) by adding equality reasoning, arithmetic, fixed-size bit-vectors, arrays, quantifiers and other useful first-order theories. This makes it much wider and useful.</p>
+
+<p>In this post we won’t go into details on how to write a solvers for such problems but instead learn on how such applications are used to solve complex puzzles by building up propositions.</p>
+
+<h3 id="enough-theory-get-to-code">Enough theory? Get to code!</h3>
+<p>So what did the theory mean?</p>
+<blockquote>
+  <p>Given any arbitrary set of assumptions and constraints an SMT solver would solve it for you if the constraints hold and if its not possible it would tell you so.</p>
+</blockquote>
+
+<p><a href="https://github.com/Z3Prover/z3">Z3</a> is an SMT solver from Microsoft Research. It is one of the most widely used SMT solvers used out there. Its free(yeaaa) and bindings are available in about every popular language. I suggest you check the repository out. We’ll try to solve a problem in Z3 using its python api.</p>
+
+<p>So first lets install it. Using a virtualenv is a great idea as it’ll not cause problems in your system wide python installation</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pip install virtualenv
+<span class="gp">$ </span>virtualenv z3
+<span class="gp">$ </span><span class="nb">source</span> ./z3/bin/activate
+</code></pre>
+</div>
+
+<p>Then download its latest version from https://github.com/Z3Prover/z3/releases or directly git clone if you like to live rough(Arch Linux FTW!)</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>wget https://github.com/Z3Prover/z3/archive/z3-4.5.0.zip
+<span class="gp">$ </span>unzip z3-4.5.0
+<span class="gp">$ </span>python scripts/mk_make.py --python
+<span class="gp">$ </span><span class="nb">cd </span>build; make
+<span class="gp">$ </span>make install
+<span class="gp">$ </span>python
+Python 2.7.12 <span class="o">(</span>default, Nov 19 2016, 06:48:10<span class="o">)</span>
+<span class="o">[</span>GCC 5.4.0 20160609] on linux2
+Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span class="s2">"credits"</span> or <span class="s2">"license"</span> <span class="k">for </span>more information.
+<span class="gp">&gt;&gt;&gt; </span>from z3 import <span class="k">*</span>
+<span class="gp">&gt;&gt;&gt; </span>z3.get_version_string<span class="o">()</span>
+<span class="s1">'4.5.0'</span>
+</code></pre>
+</div>
+
+<p>And you’re done.</p>
+
+<p>Now to check the power of Z3 we’ll try to make it solve a puzzle.
+<a href="http://binarypuzzle.com/">Binary Puzzle</a> is a puzzle with some constraints which are easy to implement in a program.</p>
+
+<p>The puzzles look something like this.</p>
+
+<p><img src="http://binarypuzzle.com/pic_daypuzzle.php?id=2324&amp;grootte=4" alt="Puzzle" /></p>
+
+<p>And the <a href="http://binarypuzzle.com/rules.php">rules</a></p>
+<blockquote>
+  <p>Each binary puzzle should be solved according to the following rules:</p>
+  <ol>
+    <li>Each box should contain a zero or a one.</li>
+    <li>No more than two similar numbers next to or below each other are allowed.</li>
+    <li>Each row and each column should contain an equal number of zeros and ones.</li>
+    <li>Each row is unique and each column is unique.
+Each binary puzzle does only have one solution. You can always find this solution without guessing.</li>
+  </ol>
+</blockquote>
+
+<p>The puzzles is a square grid of even size. The rules are quite simple. You can try solving a couple of them by visiting the site. But where’s the fun in that? So lets have a program which will solve this for us.</p>
+
+<p>So start with the basics.</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="s">'y'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solve</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="p">[</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre>
+</div>
+<p>Int is a basic data type you can declare in Z3. Here what we did is defined 2 Int variables x and y and we constrained their sum of squares to be 5. We can add more contraints as such.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">solve</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="p">[</span><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solve</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span> <span class="o">==</span> <span class="mi">25</span><span class="p">)</span>
+<span class="p">[</span><span class="n">y</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre>
+</div>
+<p>This will come in handy when you want to solve linear equations. Another data type is BitVec, a bit vector of a fixed length. These are like registers in your CPU. Fixed size and truncate on overflow. They can be referenced as integers too.</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">BitVec</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">BitVec</span><span class="p">(</span><span class="s">'b'</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="p">[</span><span class="n">b</span> <span class="o">=</span> <span class="mi">841045729</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1550054738</span><span class="p">]</span>
+</code></pre>
+</div>
+<p>Woah! What the heck is that. Seasoned computer scientists would consider that a solution. Here’s why!</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">hex</span><span class="p">(</span><span class="mi">841045729</span><span class="o">*</span><span class="mi">841045729</span><span class="o">+</span><span class="mi">1550054738</span><span class="o">*</span><span class="mi">1550054738</span><span class="p">)</span>
+<span class="s">'0x2b2909a200000005'</span>
+</code></pre>
+</div>
+<p>Since we restricted our Bit Vectors to 32 bits any operation that overflows that limit will lead to unexpected results. For a 32 bit variable 0xffffffff is the max value it can attain.So this makes more sense.</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">hex</span><span class="p">((</span><span class="mi">841045729</span><span class="o">*</span><span class="mi">841045729</span><span class="o">+</span><span class="mi">1550054738</span><span class="o">*</span><span class="mi">1550054738</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xffffffff</span><span class="p">)</span>
+<span class="s">'0x5'</span>
+</code></pre>
+</div>
+
+<p>So that’s about it. Now you can add variables, set contraints and solve them. Here’s a better way to do the same.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span> <span class="o">=</span> <span class="n">Solver</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="s">'b'</span><span class="p">,</span><span class="mi">32</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span> <span class="o">==</span> <span class="mi">25</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="n">sat</span>
+</code></pre>
+</div>
+<p>Its the same with an added constraint. If <code class="highlighter-rouge">solver.check()</code> returns <code class="highlighter-rouge">sat</code> that means the contraintsare true for at least one set of values. Now to fish out the solution.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+<span class="p">[</span><span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()[</span><span class="n">a</span><span class="p">]</span>
+<span class="mi">4</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">solver</span><span class="o">.</span><span class="n">model</span><span class="p">()[</span><span class="n">b</span><span class="p">]</span>
+<span class="mi">3</span>
+</code></pre>
+</div>
+<p>Z3 has most of the native python operators overloaded for implementation in logic solving, so its not much different from plain english. I suggest you play around and find your way. Maybe even contribute to it on github!</p>
+
+<p>Enough of that, lets get back to our puzzle. So first thing we need to represent the board in python. For some size</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">vs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+</code></pre>
+</div>
+
+<p>A 2D list to represent rows and columns in the game. next step is to define the game for Z3. I chose to consider every cell as a variable.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">v</span>  <span class="o">=</span> <span class="p">[[</span><span class="n">z3</span><span class="o">.</span><span class="n">BitVec</span><span class="p">(</span><span class="s">'v</span><span class="si">%</span><span class="s">d</span><span class="si">%</span><span class="s">d'</span> <span class="o">%</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">),</span><span class="mi">8</span><span class="p">)</span>  <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+</code></pre>
+</div>
+
+<p>Here I have referenced BitVec of size 8 in a 2D list. The cell can have only 1 bit value {0 or 1}, but still I chose 8 (more on that later).
+To represent our problem, I choose this representation</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">game</span> <span class="o">=</span> <span class="s">'''
+...00....1
+........01
+..0...1.0.
+.1...1....
+.0.0.11...
+1.....1...
+.0...1....
+...1.1.11.
+..........
+..00......
+'''</span>
+</code></pre>
+</div>
+<p>A . means that position we need to solve. Iterate over the board and set them as variables having only {0, 1} Rule #1 in game rules.</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">game</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="ow">in</span> <span class="s">'01.'</span><span class="p">,</span> <span class="n">game</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">size</span><span class="o">*</span><span class="n">size</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">game</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">z3</span><span class="o">.</span><span class="n">Solver</span><span class="p">()</span>
+<span class="k">for</span> <span class="p">((</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">),</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span> <span class="n">game</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="s">'.'</span><span class="p">:</span>  <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>           <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">)))</span>
+</code></pre>
+</div>
+<p>Here I just cross checked all my characters, filtered out the waste and set up a solver. In the for loop I added constraints for ‘.’.
+This sets up the game, but we still have not implemented the game logic.
+According to Rule #3 Each row and each column should contain an equal number of zeros and ones.</p>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>   <span class="k">return</span> <span class="p">[(</span><span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+<span class="k">def</span> <span class="nf">col</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>   <span class="k">return</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Sum</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Sum</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">col</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+</code></pre>
+</div>
+<p>So there could be only size/2 1’s and 0’s both in a row and a column. I simplified that to a sum constraint.
+According to Rule #2 No more than two similar numbers next to or below each other are allowed.
+That means 000 and 111 is not allowed in the game. This means sum of 3 continuos cells can’t be 0 or 3, 1 and 2 are okay.Adding that</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">row3</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>   <span class="k">return</span> <span class="p">[(</span><span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">3</span><span class="p">)]</span>
+<span class="k">def</span> <span class="nf">col3</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">):</span>   <span class="k">return</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">m</span><span class="o">+</span><span class="mi">3</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Sum</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">row3</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)])</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Sum</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">row3</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)])</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Sum</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">col3</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)])</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Sum</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">col3</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)])</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>That just leaves Rule #4 Each row is unique and each column is unique. Z3 has a Unique keyword.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Distinct</span><span class="p">([</span><span class="n">z3</span><span class="o">.</span><span class="n">Concat</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size</span><span class="p">)]))</span>
+<span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">z3</span><span class="o">.</span><span class="n">Distinct</span><span class="p">([</span><span class="n">z3</span><span class="o">.</span><span class="n">Concat</span><span class="p">([</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">col</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size</span><span class="p">)]))</span>
+</code></pre>
+</div>
+
+<p>I turned each row and column to a bitvector and constrained then to be unique. This pretty much sums up the puzzle. Now if you issue a <code class="highlighter-rouge">s.check()</code> it returns a <code class="highlighter-rouge">sat</code> almost immediately. Print it out</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="n">m</span>   <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">model</span><span class="p">()</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="p">[[</span><span class="n">m</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+
+<span class="c"># print solution</span>
+
+<span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">vs</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sol</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">])</span> <span class="o">+</span> <span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span> <span class="k">if</span> <span class="n">c</span><span class="o">==</span><span class="p">(</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">else</span> <span class="s">""</span><span class="p">),</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>sat
+0 1 1 0 0 1 0 0 1 1
+1 0 1 1 0 0 1 0 0 1
+1 0 0 1 1 0 1 1 0 0
+0 1 0 0 1 1 0 1 1 0
+0 0 1 0 0 1 1 0 1 1
+1 1 0 1 0 0 1 0 0 1
+1 0 1 0 1 1 0 1 0 0
+0 0 1 1 0 1 0 1 1 0
+0 1 0 1 1 0 1 0 0 1
+1 1 0 0 1 0 0 1 1 0</p>
+</blockquote>
+
+<p><img src="http://i.imgur.com/W0WXGer.png" alt="Solved" /></p>
+
+<p>For me Z3 has always been handy not just in CTFs but a couple of optimization projects. Give it a try!</p>
+
+  </div>
+
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+<a href="mailto:progclub@iiti.ac.in"><i class="fa fa-envelope"></i></a>
+<a href="https://www.facebook.com/pclubiiti"><i class="fa fa-facebook"></i></a>
+
+<a href="https://github.com/pclubiiti"><i class="fa fa-github"></i></a>
+
+
+
+
+<a href="https://www.twitter.com/pclubiiti"><i class="fa fa-twitter"></i></a>
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-106481637-1', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/blog/Inroduction-toSAT-solving/',
+		  'title': 'Inroduction to SAT solving using Z3'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+  </body>
+</html>
