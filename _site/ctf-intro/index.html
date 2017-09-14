@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Starting with CTF – The Programming Club</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="WTF is CTF?
+From Wikipedia:
+
+  Capture the flag (CTF) is a traditional outdoor game where two teams each have a flag (or other marker) and the objective is to capture the other team’s flag, located at the team’s “base,” and bring it safely back to their own base.
+
+
+" />
+    <meta property="og:description" content="WTF is CTF?
+From Wikipedia:
+
+  Capture the flag (CTF) is a traditional outdoor game where two teams each have a flag (or other marker) and the objective is to capture the other team’s flag, located at the team’s “base,” and bring it safely back to their own base.
+
+
+" />
+    
+    <meta name="author" content="The Programming Club" />
+
+    
+    <meta property="og:title" content="Starting with CTF" />
+    <meta property="twitter:title" content="Starting with CTF" />
+    
+    <meta name="theme-color" content="#2C3E50">
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon big" sizes="192x192" href="big_icon.png ">
+    <link rel="stylesheet" type="text/css" href="/blog/style.css" />
+    <link rel="stylesheet" type="text/css" href="/blog/font-awesome/css/font-awesome.min.css" />
+    <link rel="alternate" type="application/rss+xml" title="The Programming Club - Indian Institute of Technology, Indore" href="/blog/feed.xml" />
+    <meta name="mobile-web-app-capable" content="yes">
+   
+ <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Starting with CTF | The Programming Club</title>
+<meta property="og:title" content="Starting with CTF" />
+<meta name="author" content="Kunal Gupta" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An intro to CTF’s" />
+<meta property="og:description" content="An intro to CTF’s" />
+<link rel="canonical" href="http://0.0.0.0:4000/blog/ctf-intro/" />
+<meta property="og:url" content="http://0.0.0.0:4000/blog/ctf-intro/" />
+<meta property="og:site_name" content="The Programming Club" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-08-23T00:00:00+05:30" />
+<script type="application/ld+json">
+{"name":null,"description":"An intro to CTF’s","author":{"@type":"Person","name":"Kunal Gupta"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/blog/ctf-intro/","publisher":null,"image":null,"headline":"Starting with CTF","dateModified":"2017-08-23T00:00:00+05:30","datePublished":"2017-08-23T00:00:00+05:30","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/ctf-intro/"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://avatars3.githubusercontent.com/u/31797871"/></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">The Programming Club</a></h1>
+            <p class="site-description">Indian Institute of Technology, Indore</p>
+          </div>
+
+          <nav>
+            <a href="/blog/">Blog</a>
+            <a href="/projects.html">Projects</a>
+            <a href="/about.html">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Starting with CTF</h1>
+  <h4>Kunal Gupta</h4>
+  <div class="date">
+    August 23, 2017
+  </div>
+  
+  <div class="entry">
+    <h2 id="wtf-is-ctf"><a href="https://ctftime.org/ctf-wtf/">WTF is CTF?</a></h2>
+<p><em>From <a href="https://en.wikipedia.org/wiki/Capture_the_flag">Wikipedia</a>:</em></p>
+<blockquote>
+  <p>Capture the flag (CTF) is a traditional outdoor game where two teams each have a flag (or other marker) and the objective is to capture the other team’s flag, located at the team’s “base,” and bring it safely back to their own base.</p>
+</blockquote>
+
+<p>Security CTFs are somewhat similar competitions, where multiple teams/players obtain flags (which further fetch points) either by securing their systems or conducting and preventing computer security related attacks.</p>
+
+<p>There are many famous events which hold CTFs like <a href="https://en.wikipedia.org/wiki/DEF_CON">DEFCON</a> (the world’s largest hacker conventions) being the most prominent one. The NYU-CSAW (Cyber Security Awareness Week) is the largest student cyber-security contest. Many other companies and organisations like Google and TrendMicro also host CTFs.</p>
+
+<h2 id="why-ctf">Why CTF?</h2>
+
+<h3 id="hacking-computer">Hacking :computer:</h3>
+<p>CTFs are basically educational (and really fun) exercises in order to give experience in computer security (and thus computer hacking), which is a prime issue today. We all have heard about the WannaCry and Petya Ransomware which have taken over many industries incurring losses.</p>
+
+<h3 id="its-fun-and-interesting">It’s fun and interesting</h3>
+<p>You will definitely find CTFs interesting if you are interested in any of the following:</p>
+
+<ol>
+  <li>The internet and securing yourself on it; website/webapp designing.</li>
+  <li>Reverse engineering stuff and then modifying to see if it works.</li>
+  <li>Messing around with things and making them work they are not supposed to, like entering a character on a friends’s C program when it asks for an integer and then it goes into an infinite loop.</li>
+  <li>Mathematics! Yes, cryptography and many challenges require mathematical knowledge to solve them.</li>
+  <li>Tinkering around with your computer and trying to see how things work.</li>
+</ol>
+
+<h3 id="money-moneybag">Money :moneybag:</h3>
+<p>Since Cyber Security is a major growing concern, there is a demand of computer security experts in the real world.</p>
+
+<p><code class="highlighter-rouge">Demand = Jobs = Money for People who take up those jobs</code></p>
+
+<p>Also there are various bug bounty programs organised by companies and organisations like Google, Facebook, and recently Tor which award money to people who find bugs in their systems.</p>
+<h2 id="what-are-the-challengesproblems-like">What are the challenges/problems like?</h2>
+
+<p>The two main types are:</p>
+<ul>
+  <li><strong>Jeopardy-style</strong>: Challenges related to different categories with varying difficulties and points need to be solved and submitted to progress up the leaderboard.</li>
+  <li><strong>Attack/Defense</strong>: Each team is given a machine on an isolated network. The teams then need to defend their machines and attack the others to obtain flags to earn points.</li>
+</ul>
+
+<p>Some of the categories of the problems are (just a broad classification):</p>
+
+<ol>
+  <li><strong>Web</strong> - These challenges are mainly web app related. You may be given a URL and you may have to do an SQL Injection or bypass authentication or perform an XSS or CSRF.</li>
+  <li><strong>Reversing</strong> - These generally provide an executable which implements an algorithm or certain check on your input or a secret key. If you are able to understand the algorithm/check and reverse-engineer it to get back the secret key - which is generally the flag, you have successfully solved it.</li>
+  <li><strong>Pwning</strong> - Similar to reversing, you are provided an executable program but along with a server IP and port runnig the same program. You need to exploit the program to gain remote access or hijack it’s control flow so as to read the flag on the server. These range may range from simple buffer overflows to very advanced exploits.</li>
+  <li><strong>Cryptography</strong> - As the name suggests, ranges attacking cipher techniques or weak cryptographic algorithms to very advanced stuff.</li>
+  <li><strong>Miscellaneous</strong> - Everything not in the above categories. These may include things like steganography (hiding data in images, audio, etc.) and forensics, programming challenges, network sniffing, etc.</li>
+</ol>
+
+<p>You can loosely correlate the types of problems with the respective interest <a href="#its-fun-and-interesting">above</a>.</p>
+
+<h2 id="where-to-start">Where to start?</h2>
+
+<p>Be sure to learn a little about linux utilities like:</p>
+<ul>
+  <li><code class="highlighter-rouge">file</code> : Use it to know what type a given file is.</li>
+  <li><code class="highlighter-rouge">cat</code> : Print contents of a file.</li>
+  <li><code class="highlighter-rouge">strings</code> : Use it to print all strings/printable characters in a file.</li>
+  <li><code class="highlighter-rouge">grep</code> : Use it to print specific lines matching a given string or pattern from the input. (Use the <code class="highlighter-rouge">|</code> character - one above the enter key, to redirect output from one command [like <code class="highlighter-rouge">cat</code>] to another [like <code class="highlighter-rouge">grep</code>]. E.g. <code class="highlighter-rouge">cat main.c | grep hello</code> will show all lines in <code class="highlighter-rouge">main.c</code> containing <code class="highlighter-rouge">hello</code>).</li>
+</ul>
+
+<p>You can start practicing on the following sites to kick-off:</p>
+
+<ul>
+  <li><a href="https://backdoor.sdslabs.co/">Backdoor</a> : IIT Roorkee’s CTF platform with n00bCTF being an event aimed especially for beginners. Checkout previous years’ n00bCTF problems for <a href="https://backdoor.sdslabs.co/competitions/n00b17CTF/">2017</a>, <a href="https://backdoor.sdslabs.co/competitions/n00b16CTF/">2016</a>, and <a href="https://backdoor.sdslabs.co/competitions/n00b15CTF/">2015</a>. You can also go to tags and sort by category or CTF.</li>
+  <li><a href="https://www.root-me.org/">Root Me</a> : Consists of many practice problems and learning resources grouped by categories and arranged by difficulty level.</li>
+  <li><a href="http://www.wechall.net/">We Chall</a> : Contains a lot of challenges as well as an overview of popular challenge sites.</li>
+  <li><a href="https://trailofbits.github.io/ctf">CTF Field Guide</a></li>
+  <li><a href="http://captf.com/practice-ctf/">http://captf.com/practice-ctf/</a></li>
+</ul>
+
+<p><a href="https://ctftime.org/">CTF-Time</a> is a great place to know about upcoming and past CTF events.</p>
+
+<p>If you are ever stuck on a challenge for a lot of time or cannot figure it out even after reading the required resources, the write-ups for many problems are easily available on the internet or you can discuss with others and us as well!</p>
+
+<h2 id="a-sample-problem">A sample problem.</h2>
+
+<p>Here’s a very simple exercise.</p>
+<blockquote>
+  <p>Given this file, you need to submit a flag from it.</p>
+  <form onsubmit="var flag=document.getElementById('flag');if(flag.value=='flag{Example_Flag}'){flag.style='border:2px solid green';alert('Correct Flag!');}else{flag.style='border:2px solid orangered';alert('Wrong Flag!');};return false;">
+<input id="flag" type="text" placeholder="Enter Flag Here" required="" autocomplete="off" />
+</form>
+</blockquote>
+
+<p>Let’s open up the terminal and run the <code class="highlighter-rouge">file</code> command.</p>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code><span class="w">$ </span><span class="nc">file</span><span class="kv"> example
+</span>example: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV)
+</code></pre>
+</div>
+<p><a href="https://en.wikipedia.org/wiki/Executable_and_Linkable_Format">ELF</a> is used for executable files under linux.
+So we try to run it.</p>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code><span class="w">$ </span><span class="nc">chmod</span><span class="kv"> +x example #Give it executable permissions
+</span><span class="w">$ </span><span class="nc">./example</span><span class="kv">
+</span>$
+</code></pre>
+</div>
+
+<p>We get no output, so we do a <code class="highlighter-rouge">strings</code> on it.</p>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code><span class="w">$ </span><span class="nc">strings</span><span class="kv"> example
+</span>/lib/ld-linux.so.2
+libc.so.6
+_IO_stdin_used
+-- A lot of strings --
+flag{Example_Flag}       #Here's the flag
+-- A lot of strings --
+.data
+.bss
+.comment
+</code></pre>
+</div>
+<p>You can also get only the line containing the word <code class="highlighter-rouge">flag</code> by:</p>
+
+<div class="language-console highlighter-rouge"><pre class="highlight"><code><span class="w">$ </span><span class="nc">strings</span><span class="kv"> example | grep flag
+</span>flag{Example_Flag}
+</code></pre>
+</div>
+<p>Try entering the flag <a href="#a-sample-problem">here</a>, it accepts it!</p>
+
+<h3 id="the-code">The code</h3>
+
+<p>The C-Code for the above problem is given below, you can tinker with it:</p>
+<div class="language-c highlighter-rouge"><pre class="highlight"><code><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+	<span class="kt">char</span> <span class="o">*</span><span class="n">flag</span><span class="o">=</span><span class="s">"flag{Example_Flag}"</span><span class="p">;</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Happy Hacking!</p>
+
+
+  </div>
+
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+<a href="mailto:progclub@iiti.ac.in"><i class="fa fa-envelope"></i></a>
+<a href="https://www.facebook.com/pclubiiti"><i class="fa fa-facebook"></i></a>
+
+<a href="https://github.com/pclubiiti"><i class="fa fa-github"></i></a>
+
+
+
+
+<a href="https://www.twitter.com/pclubiiti"><i class="fa fa-twitter"></i></a>
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-106481637-1', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/blog/ctf-intro/',
+		  'title': 'Starting with CTF'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+  </body>
+</html>

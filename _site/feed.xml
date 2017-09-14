@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.5.2">Jekyll</generator><link href="http://0.0.0.0:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/blog/" rel="alternate" type="text/html" /><updated>2017-09-15T00:10:01+05:30</updated><id>http://0.0.0.0:4000/blog/</id><title type="html">The Programming Club</title><subtitle>Indian Institute of Technology, Indore</subtitle><entry><title type="html">Binary indexed trees/ Fenwick trees</title><link href="http://0.0.0.0:4000/blog/fenwick-trees/" rel="alternate" type="text/html" title="Binary indexed trees/ Fenwick trees" /><published>2017-09-09T00:00:00+05:30</published><updated>2017-09-09T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/fenwick-trees</id><content type="html" xml:base="http://0.0.0.0:4000/blog/fenwick-trees/">&lt;p&gt;– Range Queries with Point/Range Updates&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.5.2">Jekyll</generator><link href="http://0.0.0.0:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/blog/" rel="alternate" type="text/html" /><updated>2017-09-15T01:26:54+05:30</updated><id>http://0.0.0.0:4000/blog/</id><title type="html">The Programming Club</title><subtitle>Indian Institute of Technology, Indore</subtitle><entry><title type="html">Binary indexed trees/ Fenwick trees</title><link href="http://0.0.0.0:4000/blog/fenwick-trees/" rel="alternate" type="text/html" title="Binary indexed trees/ Fenwick trees" /><published>2017-09-09T00:00:00+05:30</published><updated>2017-09-09T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/fenwick-trees</id><content type="html" xml:base="http://0.0.0.0:4000/blog/fenwick-trees/">&lt;p&gt;– Range Queries with Point/Range Updates&lt;/p&gt;
 
 &lt;h1 id=&quot;a-general-overview-&quot;&gt;A general overview:-&lt;/h1&gt;
 &lt;p&gt;Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees&lt;/p&gt;
@@ -321,7 +321,140 @@ Also the value of &lt;code class=&quot;highlighter-rouge&quot;&gt;NEW&lt;/code&g
   &lt;li&gt;Changing &lt;code class=&quot;highlighter-rouge&quot;&gt;lastbit=31&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;lastbit=str.size()-1&lt;/code&gt; in the insert function.&lt;/li&gt;
   &lt;li&gt;Changing &lt;code class=&quot;highlighter-rouge&quot;&gt;curr=ch(x,i)&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;curr=str[i]-'a'&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;Also note that the fmin and fmax functions cannot be using in the case of tries containing strings!&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Gvs Akhil</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">In this tutorial, we shall learn how to implement a trie without the use of pointers. The basics and working of a trie should be known beforehand. If not, please read the prerequisuite.</summary></entry><entry><title type="html">Inroduction to SAT solving using Z3</title><link href="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/" rel="alternate" type="text/html" title="Inroduction to SAT solving using Z3" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/Inroduction-toSAT-solving</id><content type="html" xml:base="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/">&lt;h4 id=&quot;sat-problem&quot;&gt;SAT problem&lt;/h4&gt;
+&lt;/ul&gt;</content><author><name>Gvs Akhil</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">In this tutorial, we shall learn how to implement a trie without the use of pointers. The basics and working of a trie should be known beforehand. If not, please read the prerequisuite.</summary></entry><entry><title type="html">Starting with CTF</title><link href="http://0.0.0.0:4000/blog/ctf-intro/" rel="alternate" type="text/html" title="Starting with CTF" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/ctf-intro</id><content type="html" xml:base="http://0.0.0.0:4000/blog/ctf-intro/">&lt;h2 id=&quot;wtf-is-ctf&quot;&gt;&lt;a href=&quot;https://ctftime.org/ctf-wtf/&quot;&gt;WTF is CTF?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;From &lt;a href=&quot;https://en.wikipedia.org/wiki/Capture_the_flag&quot;&gt;Wikipedia&lt;/a&gt;:&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Capture the flag (CTF) is a traditional outdoor game where two teams each have a flag (or other marker) and the objective is to capture the other team’s flag, located at the team’s “base,” and bring it safely back to their own base.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Security CTFs are somewhat similar competitions, where multiple teams/players obtain flags (which further fetch points) either by securing their systems or conducting and preventing computer security related attacks.&lt;/p&gt;
+
+&lt;p&gt;There are many famous events which hold CTFs like &lt;a href=&quot;https://en.wikipedia.org/wiki/DEF_CON&quot;&gt;DEFCON&lt;/a&gt; (the world’s largest hacker conventions) being the most prominent one. The NYU-CSAW (Cyber Security Awareness Week) is the largest student cyber-security contest. Many other companies and organisations like Google and TrendMicro also host CTFs.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-ctf&quot;&gt;Why CTF?&lt;/h2&gt;
+
+&lt;h3 id=&quot;hacking-computer&quot;&gt;Hacking :computer:&lt;/h3&gt;
+&lt;p&gt;CTFs are basically educational (and really fun) exercises in order to give experience in computer security (and thus computer hacking), which is a prime issue today. We all have heard about the WannaCry and Petya Ransomware which have taken over many industries incurring losses.&lt;/p&gt;
+
+&lt;h3 id=&quot;its-fun-and-interesting&quot;&gt;It’s fun and interesting&lt;/h3&gt;
+&lt;p&gt;You will definitely find CTFs interesting if you are interested in any of the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The internet and securing yourself on it; website/webapp designing.&lt;/li&gt;
+  &lt;li&gt;Reverse engineering stuff and then modifying to see if it works.&lt;/li&gt;
+  &lt;li&gt;Messing around with things and making them work they are not supposed to, like entering a character on a friends’s C program when it asks for an integer and then it goes into an infinite loop.&lt;/li&gt;
+  &lt;li&gt;Mathematics! Yes, cryptography and many challenges require mathematical knowledge to solve them.&lt;/li&gt;
+  &lt;li&gt;Tinkering around with your computer and trying to see how things work.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;money-moneybag&quot;&gt;Money :moneybag:&lt;/h3&gt;
+&lt;p&gt;Since Cyber Security is a major growing concern, there is a demand of computer security experts in the real world.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Demand = Jobs = Money for People who take up those jobs&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Also there are various bug bounty programs organised by companies and organisations like Google, Facebook, and recently Tor which award money to people who find bugs in their systems.&lt;/p&gt;
+&lt;h2 id=&quot;what-are-the-challengesproblems-like&quot;&gt;What are the challenges/problems like?&lt;/h2&gt;
+
+&lt;p&gt;The two main types are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Jeopardy-style&lt;/strong&gt;: Challenges related to different categories with varying difficulties and points need to be solved and submitted to progress up the leaderboard.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Attack/Defense&lt;/strong&gt;: Each team is given a machine on an isolated network. The teams then need to defend their machines and attack the others to obtain flags to earn points.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some of the categories of the problems are (just a broad classification):&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Web&lt;/strong&gt; - These challenges are mainly web app related. You may be given a URL and you may have to do an SQL Injection or bypass authentication or perform an XSS or CSRF.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Reversing&lt;/strong&gt; - These generally provide an executable which implements an algorithm or certain check on your input or a secret key. If you are able to understand the algorithm/check and reverse-engineer it to get back the secret key - which is generally the flag, you have successfully solved it.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Pwning&lt;/strong&gt; - Similar to reversing, you are provided an executable program but along with a server IP and port runnig the same program. You need to exploit the program to gain remote access or hijack it’s control flow so as to read the flag on the server. These range may range from simple buffer overflows to very advanced exploits.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Cryptography&lt;/strong&gt; - As the name suggests, ranges attacking cipher techniques or weak cryptographic algorithms to very advanced stuff.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Miscellaneous&lt;/strong&gt; - Everything not in the above categories. These may include things like steganography (hiding data in images, audio, etc.) and forensics, programming challenges, network sniffing, etc.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You can loosely correlate the types of problems with the respective interest &lt;a href=&quot;#its-fun-and-interesting&quot;&gt;above&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;where-to-start&quot;&gt;Where to start?&lt;/h2&gt;
+
+&lt;p&gt;Be sure to learn a little about linux utilities like:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt; : Use it to know what type a given file is.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cat&lt;/code&gt; : Print contents of a file.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;strings&lt;/code&gt; : Use it to print all strings/printable characters in a file.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt; : Use it to print specific lines matching a given string or pattern from the input. (Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;|&lt;/code&gt; character - one above the enter key, to redirect output from one command [like &lt;code class=&quot;highlighter-rouge&quot;&gt;cat&lt;/code&gt;] to another [like &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt;]. E.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;cat main.c | grep hello&lt;/code&gt; will show all lines in &lt;code class=&quot;highlighter-rouge&quot;&gt;main.c&lt;/code&gt; containing &lt;code class=&quot;highlighter-rouge&quot;&gt;hello&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can start practicing on the following sites to kick-off:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://backdoor.sdslabs.co/&quot;&gt;Backdoor&lt;/a&gt; : IIT Roorkee’s CTF platform with n00bCTF being an event aimed especially for beginners. Checkout previous years’ n00bCTF problems for &lt;a href=&quot;https://backdoor.sdslabs.co/competitions/n00b17CTF/&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;https://backdoor.sdslabs.co/competitions/n00b16CTF/&quot;&gt;2016&lt;/a&gt;, and &lt;a href=&quot;https://backdoor.sdslabs.co/competitions/n00b15CTF/&quot;&gt;2015&lt;/a&gt;. You can also go to tags and sort by category or CTF.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.root-me.org/&quot;&gt;Root Me&lt;/a&gt; : Consists of many practice problems and learning resources grouped by categories and arranged by difficulty level.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.wechall.net/&quot;&gt;We Chall&lt;/a&gt; : Contains a lot of challenges as well as an overview of popular challenge sites.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://trailofbits.github.io/ctf&quot;&gt;CTF Field Guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://captf.com/practice-ctf/&quot;&gt;http://captf.com/practice-ctf/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ctftime.org/&quot;&gt;CTF-Time&lt;/a&gt; is a great place to know about upcoming and past CTF events.&lt;/p&gt;
+
+&lt;p&gt;If you are ever stuck on a challenge for a lot of time or cannot figure it out even after reading the required resources, the write-ups for many problems are easily available on the internet or you can discuss with others and us as well!&lt;/p&gt;
+
+&lt;h2 id=&quot;a-sample-problem&quot;&gt;A sample problem.&lt;/h2&gt;
+
+&lt;p&gt;Here’s a very simple exercise.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given this file, you need to submit a flag from it.&lt;/p&gt;
+  &lt;form onsubmit=&quot;var flag=document.getElementById('flag');if(flag.value=='flag{Example_Flag}'){flag.style='border:2px solid green';alert('Correct Flag!');}else{flag.style='border:2px solid orangered';alert('Wrong Flag!');};return false;&quot;&gt;
+&lt;input id=&quot;flag&quot; type=&quot;text&quot; placeholder=&quot;Enter Flag Here&quot; required=&quot;&quot; autocomplete=&quot;off&quot; /&gt;
+&lt;/form&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Let’s open up the terminal and run the &lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; example
+&lt;/span&gt;example: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Executable_and_Linkable_Format&quot;&gt;ELF&lt;/a&gt; is used for executable files under linux.
+So we try to run it.&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;chmod&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; +x example #Give it executable permissions
+&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;./example&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt;
+&lt;/span&gt;$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We get no output, so we do a &lt;code class=&quot;highlighter-rouge&quot;&gt;strings&lt;/code&gt; on it.&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; example
+&lt;/span&gt;/lib/ld-linux.so.2
+libc.so.6
+_IO_stdin_used
+-- A lot of strings --
+flag{Example_Flag}       #Here's the flag
+-- A lot of strings --
+.data
+.bss
+.comment
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;You can also get only the line containing the word &lt;code class=&quot;highlighter-rouge&quot;&gt;flag&lt;/code&gt; by:&lt;/p&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;strings&lt;/span&gt;&lt;span class=&quot;kv&quot;&gt; example | grep flag
+&lt;/span&gt;flag{Example_Flag}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Try entering the flag &lt;a href=&quot;#a-sample-problem&quot;&gt;here&lt;/a&gt;, it accepts it!&lt;/p&gt;
+
+&lt;h3 id=&quot;the-code&quot;&gt;The code&lt;/h3&gt;
+
+&lt;p&gt;The C-Code for the above problem is given below, you can tinker with it:&lt;/p&gt;
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;flag{Example_Flag}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Happy Hacking!&lt;/p&gt;</content><author><name>Kunal Gupta</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">WTF is CTF? From Wikipedia: Capture the flag (CTF) is a traditional outdoor game where two teams each have a flag (or other marker) and the objective is to capture the other team’s flag, located at the team’s “base,” and bring it safely back to their own base.</summary></entry><entry><title type="html">Inroduction to SAT solving using Z3</title><link href="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/" rel="alternate" type="text/html" title="Inroduction to SAT solving using Z3" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/Inroduction-toSAT-solving</id><content type="html" xml:base="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/">&lt;h4 id=&quot;sat-problem&quot;&gt;SAT problem&lt;/h4&gt;
 &lt;p&gt;In Computer Science a SAT(satisfiability) problem is defined as follows&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.&lt;/p&gt;
@@ -552,4 +685,4 @@ That means 000 and 111 is not allowed in the game. This means sum of 3 continuos
 
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/W0WXGer.png&quot; alt=&quot;Solved&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;For me Z3 has always been handy not just in CTFs but a couple of optimization projects. Give it a try!&lt;/p&gt;</content><author><name>Aditya Jain</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">SAT problem In Computer Science a SAT(satisfiability) problem is defined as follows Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.</summary></entry></feed>
+&lt;p&gt;For me Z3 has always been handy not just in CTFs but a couple of optimization projects. Give it a try!&lt;/p&gt;</content><author><name>Sudhakar Verma</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">SAT problem In Computer Science a SAT(satisfiability) problem is defined as follows Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.</summary></entry></feed>

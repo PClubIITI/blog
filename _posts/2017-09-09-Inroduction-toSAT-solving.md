@@ -4,7 +4,7 @@ layout: post
 title: "Inroduction to SAT solving using Z3"
 description: "Little theory you should get (or maybe not)"
 date: 2017-08-23
-author: "Aditya Jain"
+author: "Sudhakar Verma"
 tags: [tech, code, tutorial]
 comments: true
 share: true
