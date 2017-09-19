@@ -1,12 +1,9 @@
 ---
 layout: post
-title: Binary indexed trees/ Fenwick trees
+title: "Binary indexed trees/ Fenwick trees"
 author: "Kumar Abhinav" 
 ---
 
-– Range Queries with Point/Range Updates
-
-# A general overview:-
 Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees  
 1. Range Update with Point Query
 2. Range Update with Range Query
@@ -41,6 +38,8 @@ Given an array A[1..N], all zero initially, perform the following operations:-
 Where Q is the number of Queries to perform
 
 ### Naïve solution
+
+
 The naïve solution to this problem is very clear
 1. We maintain an array of numbers, initialized to zero
 2. For every Update query, we iterate over the array from L to R, and add Y to every element
@@ -48,11 +47,15 @@ The naïve solution to this problem is very clear
 Every output query takes O(1) time and every update query takes O(N) time, so in worst case, the solution will take O(N*Q), which will sadly TLE (unless time limit is a day or two :P )
 
 ### A slightly different solution
+
+
 Instead of updating the whole range why not we just update two indexes. Wait, how! You must be asking, find out below :D  
 1. Maintain an array, initialized to zero  
 2. For every Update query, add Y to A[L], and subtract Y from A[R+1]  
 3. For every Output query, print sum(A[1..X])  
+
 How this works?  
+
 Assume sum(A[X]) gives the correct answer before our update query. Now, when we add Y to A[L], sum(A[X]) for every index>=L will now be increased by Y. But, for index > R, the value must not be increased, therefore we decrease A[R+1] by Y, and now our algorithm gives correct answer for all the indexes again! Since the array was initialized to zero, it will definitely give the correct output for every output query before an update query. Since we just proved that every update maintains the correctness, we have proved that our algorithm is correct by induction. Awesome!
 
 Okay, so now update query is O(1), but now Output query is O(N), so the worst case complexity is 
@@ -61,6 +64,8 @@ So, why did we even consider this approach?
 Notice something, in this approach update query is essentially updating two indexes (Point Update), and output query is basically sum of first X numbers (Range Query). Which algorithm is fast when it comes to point update range query? Déjà vu?
 
 ### Binary Indexed Tree Solution
+
+
 The solution is basically building our BIT atop the array we defined in the previous approach.
  For every range update query A[L..R], we do two BIT updates, one at index L and the other at index R+1.
  For every point query A[X], we return BIT query at index X. 

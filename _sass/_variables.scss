@@ -1,9 +1,20 @@
+// Variables
 
-//
-// VARIABLES
+// Gray and Brand Colors for use across theme 
 //
 
-// Colors
+$theme-primary: #180022;
+$theme-success: #2f4f4f;
+$navbar-hover: #7395AE;
+
+$gray-base: #000;
+$gray-darker: lighten($gray-base, 13.5%);
+$gray-dark: lighten($gray-base, 20%);
+$gray: lighten($gray-base, 33.5%);
+$gray-light: lighten($gray-base, 46.7%);
+$gray-lighter: lighten($gray-base, 93.5%);
+
+
 $blue: steelblue;
 
 // Grays

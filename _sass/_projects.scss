@@ -1,0 +1,24 @@
+// Styling for the project section
+.blog {
+  .blog-item{
+    border-bottom:  0.1em solid $theme-success ;
+    margin: 1em;
+    text-decoration: none;
+    color: darkslategrey;
+    a{
+      text-decoration: none;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+    
+  }
+}
+
+.post{
+  p{
+    font-size: 1em;
+  }
+}
+
+

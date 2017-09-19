@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Binary indexed trees/ Fenwick trees – The Programming Club</title>
 
-        <meta charset="utf-8" />
+<head>
+  <title>Binary indexed trees/ Fenwick trees – The Programming Club</title>
+
+      <meta charset="utf-8" />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
 
     
-    <meta name="description" content="– Range Queries with Point/Range Updates
+    <meta name="description" content="Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees
+
+  Range Update with Point Query
+  Range Update with Range Query
+
 
 " />
-    <meta property="og:description" content="– Range Queries with Point/Range Updates
+    <meta property="og:description" content="Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees
+
+  Range Update with Point Query
+  Range Update with Range Query
+
 
 " />
     
@@ -22,68 +31,76 @@
     <meta property="og:title" content="Binary indexed trees/ Fenwick trees" />
     <meta property="twitter:title" content="Binary indexed trees/ Fenwick trees" />
     
-    <meta name="theme-color" content="#2C3E50">
-    <!--[if lt IE 9]>
+  <meta name="theme-color" content="#180022">
+  <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon big" sizes="192x192" href="big_icon.png ">
-    <link rel="stylesheet" type="text/css" href="/blog/style.css" />
-    <link rel="stylesheet" type="text/css" href="/blog/font-awesome/css/font-awesome.min.css" />
-    <link rel="alternate" type="application/rss+xml" title="The Programming Club - Indian Institute of Technology, Indore" href="/blog/feed.xml" />
-    <meta name="mobile-web-app-capable" content="yes">
-   
- <!-- Begin Jekyll SEO tag v2.3.0 -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon big" sizes="192x192" href="big_icon.png ">
+  <link rel="stylesheet" type="text/css" href="/blog/style.css" />
+  <link rel="stylesheet" type="text/css" href="/blog/font-awesome/css/font-awesome.min.css" />
+  <link rel="alternate" type="application/rss+xml" title="The Programming Club - Indian Institute of Technology, Indore" href="/blog/feed.xml"
+  />
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous"> <!-- Begin Jekyll SEO tag v2.3.0 -->
 <title>Binary indexed trees/ Fenwick trees | The Programming Club</title>
 <meta property="og:title" content="Binary indexed trees/ Fenwick trees" />
 <meta name="author" content="Kumar Abhinav" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="– Range Queries with Point/Range Updates" />
-<meta property="og:description" content="– Range Queries with Point/Range Updates" />
+<meta name="description" content="Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees Range Update with Point Query Range Update with Range Query" />
+<meta property="og:description" content="Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees Range Update with Point Query Range Update with Range Query" />
 <link rel="canonical" href="http://0.0.0.0:4000/blog/fenwick-trees/" />
 <meta property="og:url" content="http://0.0.0.0:4000/blog/fenwick-trees/" />
 <meta property="og:site_name" content="The Programming Club" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-09-09T00:00:00+05:30" />
 <script type="application/ld+json">
-{"name":null,"description":"– Range Queries with Point/Range Updates","author":{"@type":"Person","name":"Kumar Abhinav"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/blog/fenwick-trees/","publisher":null,"image":null,"headline":"Binary indexed trees/ Fenwick trees","dateModified":"2017-09-09T00:00:00+05:30","datePublished":"2017-09-09T00:00:00+05:30","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/fenwick-trees/"},"@context":"http://schema.org"}</script>
+{"name":null,"description":"Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees Range Update with Point Query Range Update with Range Query","author":{"@type":"Person","name":"Kumar Abhinav"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/blog/fenwick-trees/","publisher":null,"image":null,"headline":"Binary indexed trees/ Fenwick trees","dateModified":"2017-09-09T00:00:00+05:30","datePublished":"2017-09-09T00:00:00+05:30","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/fenwick-trees/"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  </head>
+</head>
 
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="https://avatars3.githubusercontent.com/u/31797871"/></a>
+<body>
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="/">The Programming Club</a></h1>
-            <p class="site-description">Indian Institute of Technology, Indore</p>
-          </div>
-
-          <nav>
-            <a href="/blog/">Blog</a>
-            <a href="/projects.html">Projects</a>
-            <a href="/about.html">About</a>
-          </nav>
-        </header>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="/">The Programming Club</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  Menu
+                  <i class="fa fa-bars"></i>
+                </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/blog/">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/blog/">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/blog/">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/blog/">Projects</a>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <div id="main" role="main" class="container">
-      <article class="post">
-  <h1>Binary indexed trees/ Fenwick trees</h1>
+  <div id="main" class="container">
+    <section class="post">
+  <h1>Binary indexed trees/ Fenwick trees</h1><br>
   <h4>Kumar Abhinav</h4>
   <div class="date">
     September  9, 2017
-  </div>
+  </div><br>
   
-  <div class="entry">
-    <p>– Range Queries with Point/Range Updates</p>
-
-<h1 id="a-general-overview-">A general overview:-</h1>
-<p>Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees</p>
+  <p>
+    <p>Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees</p>
 <ol>
   <li>Range Update with Point Query</li>
   <li>Range Update with Range Query</li>
@@ -128,6 +145,7 @@ Where Q is the number of Queries to perform</li>
 </ol>
 
 <h3 id="naïve-solution">Naïve solution</h3>
+
 <p>The naïve solution to this problem is very clear</p>
 <ol>
   <li>We maintain an array of numbers, initialized to zero</li>
@@ -137,14 +155,17 @@ Every output query takes O(1) time and every update query takes O(N) time, so in
 </ol>
 
 <h3 id="a-slightly-different-solution">A slightly different solution</h3>
+
 <p>Instead of updating the whole range why not we just update two indexes. Wait, how! You must be asking, find out below :D</p>
 <ol>
   <li>Maintain an array, initialized to zero</li>
   <li>For every Update query, add Y to A[L], and subtract Y from A[R+1]</li>
-  <li>For every Output query, print sum(A[1..X])<br />
-How this works?<br />
-Assume sum(A[X]) gives the correct answer before our update query. Now, when we add Y to A[L], sum(A[X]) for every index&gt;=L will now be increased by Y. But, for index &gt; R, the value must not be increased, therefore we decrease A[R+1] by Y, and now our algorithm gives correct answer for all the indexes again! Since the array was initialized to zero, it will definitely give the correct output for every output query before an update query. Since we just proved that every update maintains the correctness, we have proved that our algorithm is correct by induction. Awesome!</li>
+  <li>For every Output query, print sum(A[1..X])</li>
 </ol>
+
+<p>How this works?</p>
+
+<p>Assume sum(A[X]) gives the correct answer before our update query. Now, when we add Y to A[L], sum(A[X]) for every index&gt;=L will now be increased by Y. But, for index &gt; R, the value must not be increased, therefore we decrease A[R+1] by Y, and now our algorithm gives correct answer for all the indexes again! Since the array was initialized to zero, it will definitely give the correct output for every output query before an update query. Since we just proved that every update maintains the correctness, we have proved that our algorithm is correct by induction. Awesome!</p>
 
 <p>Okay, so now update query is O(1), but now Output query is O(N), so the worst case complexity is 
 Still O(Q*N), and our solution will still TLE.
@@ -152,6 +173,7 @@ So, why did we even consider this approach?
 Notice something, in this approach update query is essentially updating two indexes (Point Update), and output query is basically sum of first X numbers (Range Query). Which algorithm is fast when it comes to point update range query? Déjà vu?</p>
 
 <h3 id="binary-indexed-tree-solution">Binary Indexed Tree Solution</h3>
+
 <p>The solution is basically building our BIT atop the array we defined in the previous approach.
  For every range update query A[L..R], we do two BIT updates, one at index L and the other at index R+1.
  For every point query A[X], we return BIT query at index X. 
@@ -183,35 +205,58 @@ C++ Implementation</p>
 </code></pre>
 </div>
 
+  </p>
+
+  
+</section>
+
   </div>
+
+  <footer id="footer" class="text-center">
+    <div class="footer-above">
+      <div class="container">
+        <h2 class="text-center">About Us</h2>
+        <hr class="underline">
+
+        <div class="row">
+          <div class="footer-col col-md-4">
+            <h3>Location</h3>
+            <p>
+              Indian Institute of Technology <br> Indore
+            </p>
+          </div>
+          <div class="col-md-4 footer-col">
+            <a href="/about.html" class="btn btn-lg btn-info">
+                      <i class="fa fa-users"></i>
+                        Meet the team
+                      </a>
+          </div>
+          <div class="footer-col col-md-4">
+            <h3>Around the Web</h3>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a class="btn-social btn-outline" target="_blank" href="mailto:progclub@iiti.ac.in">
+                      <i class="fa fa-fw fa-envelope" aria-hidden="true" target="_blank"></i>
+                    </a>
+                <a class="btn-social btn-outline" target="_blank" href="https://www.facebook.com/groups/485116264850626/">
+                        <i class="fa fa-fw fa-facebook" aria-hidden="true" target="_blank"></i>
+                      </a>
+                <a class="btn-social btn-outline" target="_blank" href="https://github.com/DaemonLab">
+                          <i class="fa fa-fw fa-github" aria-hidden="true" target="_blank"></i>
+                        </a>
+                <a class="btn-social btn-outline" target="_blank" href="https://twitter.com/pclubiiti">
+                            <i class="fa fa-fw fa-twitter" aria-hidden="true" target="_blank"></i>
+                          </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+  </footer>
 
 
   
-</article>
-
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          
-<a href="mailto:progclub@iiti.ac.in"><i class="fa fa-envelope"></i></a>
-<a href="https://www.facebook.com/pclubiiti"><i class="fa fa-facebook"></i></a>
-
-<a href="https://github.com/pclubiiti"><i class="fa fa-github"></i></a>
-
-
-
-
-<a href="https://www.twitter.com/pclubiiti"><i class="fa fa-twitter"></i></a>
-
-
-
-        </footer>
-      </div>
-    </div>
-
-    
 	<!-- Google Analytics -->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -228,5 +273,71 @@ C++ Implementation</p>
 	<!-- End Google Analytics -->
 
 
-  </body>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+    crossorigin="anonymous"></script>
+  <script>
+    (function ($) {
+      "use strict"; // Start of use strict
+
+      // Smooth scrolling using jQuery easing
+      $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this
+          .hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          if (target.length) {
+            $('html, body').animate({
+              scrollTop: (target.offset().top - 48)
+            }, 1000, "easeInOutExpo");
+            return false;
+          }
+        }
+      });
+
+      // Closes responsive menu when a scroll trigger link is clicked
+      $('.js-scroll-trigger').click(function () {
+        $('.navbar-collapse').collapse('hide');
+      });
+
+      // Activate scrollspy to add active class to navbar items on scroll
+      $('body').scrollspy({
+        target: '#mainNav',
+        offset: 54
+      });
+
+      // Collapse the navbar when page is scrolled
+      $(window).scroll(function () {
+        if ($("#mainNav").offset().top > 100) {
+          $("#mainNav").addClass("navbar-shrink");
+        } else {
+          $("#mainNav").removeClass("navbar-shrink");
+        }
+      });
+
+      // Floating label headings for the contact form
+      $(function () {
+        $("body").on("input propertychange", ".floating-label-form-group", function (e) {
+          $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
+        }).on("focus", ".floating-label-form-group", function () {
+          $(this).addClass("floating-label-form-group-with-focus");
+        }).on("blur", ".floating-label-form-group", function () {
+          $(this).removeClass("floating-label-form-group-with-focus");
+        });
+      });
+
+    })(jQuery); // End of use strict
+
+    $(".hover").mouseleave(
+      function () {
+        $(this).removeClass("hover");
+      }
+    );
+  </script>
+</body>
+
 </html>

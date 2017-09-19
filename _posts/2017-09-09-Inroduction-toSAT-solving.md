@@ -1,7 +1,7 @@
 ---
 
 layout: post
-title: "Inroduction to SAT solving using Z3"
+title: "Introduction to SAT solving using Z3"
 description: "Little theory you should get (or maybe not)"
 date: 2017-08-23
 author: "Sudhakar Verma"
@@ -11,7 +11,6 @@ share: true
 
 ---
 
-#### SAT problem
 In Computer Science a SAT(satisfiability) problem is defined as follows
 > Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.
 

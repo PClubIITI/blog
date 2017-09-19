@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Tries: Pointer free Implementation – The Programming Club</title>
 
-        <meta charset="utf-8" />
+<head>
+  <title>Tries: Pointer free Implementation – The Programming Club</title>
+
+      <meta charset="utf-8" />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
@@ -22,18 +23,20 @@
     <meta property="og:title" content="Tries: Pointer free Implementation" />
     <meta property="twitter:title" content="Tries: Pointer free Implementation" />
     
-    <meta name="theme-color" content="#2C3E50">
-    <!--[if lt IE 9]>
+  <meta name="theme-color" content="#180022">
+  <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon big" sizes="192x192" href="big_icon.png ">
-    <link rel="stylesheet" type="text/css" href="/blog/style.css" />
-    <link rel="stylesheet" type="text/css" href="/blog/font-awesome/css/font-awesome.min.css" />
-    <link rel="alternate" type="application/rss+xml" title="The Programming Club - Indian Institute of Technology, Indore" href="/blog/feed.xml" />
-    <meta name="mobile-web-app-capable" content="yes">
-   
- <!-- Begin Jekyll SEO tag v2.3.0 -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon big" sizes="192x192" href="big_icon.png ">
+  <link rel="stylesheet" type="text/css" href="/blog/style.css" />
+  <link rel="stylesheet" type="text/css" href="/blog/font-awesome/css/font-awesome.min.css" />
+  <link rel="alternate" type="application/rss+xml" title="The Programming Club - Indian Institute of Technology, Indore" href="/blog/feed.xml"
+  />
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous"> <!-- Begin Jekyll SEO tag v2.3.0 -->
 <title>Tries: Pointer free Implementation | The Programming Club</title>
 <meta property="og:title" content="Tries: Pointer free Implementation" />
 <meta name="author" content="Gvs Akhil" />
@@ -49,37 +52,46 @@
 {"name":null,"description":"A tutorial to implement tries without the use of pointers","author":{"@type":"Person","name":"Gvs Akhil"},"@type":"BlogPosting","url":"http://0.0.0.0:4000/blog/tries-article/","publisher":null,"image":null,"headline":"Tries: Pointer free Implementation","dateModified":"2017-08-23T00:00:00+05:30","datePublished":"2017-08-23T00:00:00+05:30","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/tries-article/"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  </head>
+</head>
 
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="https://avatars3.githubusercontent.com/u/31797871"/></a>
+<body>
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="/">The Programming Club</a></h1>
-            <p class="site-description">Indian Institute of Technology, Indore</p>
-          </div>
-
-          <nav>
-            <a href="/blog/">Blog</a>
-            <a href="/projects.html">Projects</a>
-            <a href="/about.html">About</a>
-          </nav>
-        </header>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="/">The Programming Club</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  Menu
+                  <i class="fa fa-bars"></i>
+                </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/blog/">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/blog/">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/blog/">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/blog/">Projects</a>
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <div id="main" role="main" class="container">
-      <article class="post">
-  <h1>Tries: Pointer free Implementation</h1>
+  <div id="main" class="container">
+    <section class="post">
+  <h1>Tries: Pointer free Implementation</h1><br>
   <h4>Gvs Akhil</h4>
   <div class="date">
     August 23, 2017
-  </div>
+  </div><br>
   
-  <div class="entry">
+  <p>
     <p>In this tutorial, we shall learn how to implement a trie without the use of pointers. The basics and working of a trie should be known beforehand. If not, please read the <a href="https://threads-iiith.quora.com/Tutorial-on-Trie-and-example-problems">prerequisuite</a>.</p>
 
 <p>We shall deal with a trie containing integers in its binary form.<br />
@@ -304,35 +316,58 @@ Also the value of <code class="highlighter-rouge">NEW</code> is incremented by o
   <li>Also note that the fmin and fmax functions cannot be using in the case of tries containing strings!</li>
 </ul>
 
+  </p>
+
+  
+</section>
+
   </div>
+
+  <footer id="footer" class="text-center">
+    <div class="footer-above">
+      <div class="container">
+        <h2 class="text-center">About Us</h2>
+        <hr class="underline">
+
+        <div class="row">
+          <div class="footer-col col-md-4">
+            <h3>Location</h3>
+            <p>
+              Indian Institute of Technology <br> Indore
+            </p>
+          </div>
+          <div class="col-md-4 footer-col">
+            <a href="/about.html" class="btn btn-lg btn-info">
+                      <i class="fa fa-users"></i>
+                        Meet the team
+                      </a>
+          </div>
+          <div class="footer-col col-md-4">
+            <h3>Around the Web</h3>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a class="btn-social btn-outline" target="_blank" href="mailto:progclub@iiti.ac.in">
+                      <i class="fa fa-fw fa-envelope" aria-hidden="true" target="_blank"></i>
+                    </a>
+                <a class="btn-social btn-outline" target="_blank" href="https://www.facebook.com/groups/485116264850626/">
+                        <i class="fa fa-fw fa-facebook" aria-hidden="true" target="_blank"></i>
+                      </a>
+                <a class="btn-social btn-outline" target="_blank" href="https://github.com/DaemonLab">
+                          <i class="fa fa-fw fa-github" aria-hidden="true" target="_blank"></i>
+                        </a>
+                <a class="btn-social btn-outline" target="_blank" href="https://twitter.com/pclubiiti">
+                            <i class="fa fa-fw fa-twitter" aria-hidden="true" target="_blank"></i>
+                          </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+  </footer>
 
 
   
-</article>
-
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          
-<a href="mailto:progclub@iiti.ac.in"><i class="fa fa-envelope"></i></a>
-<a href="https://www.facebook.com/pclubiiti"><i class="fa fa-facebook"></i></a>
-
-<a href="https://github.com/pclubiiti"><i class="fa fa-github"></i></a>
-
-
-
-
-<a href="https://www.twitter.com/pclubiiti"><i class="fa fa-twitter"></i></a>
-
-
-
-        </footer>
-      </div>
-    </div>
-
-    
 	<!-- Google Analytics -->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -349,5 +384,71 @@ Also the value of <code class="highlighter-rouge">NEW</code> is incremented by o
 	<!-- End Google Analytics -->
 
 
-  </body>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+    crossorigin="anonymous"></script>
+  <script>
+    (function ($) {
+      "use strict"; // Start of use strict
+
+      // Smooth scrolling using jQuery easing
+      $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this
+          .hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          if (target.length) {
+            $('html, body').animate({
+              scrollTop: (target.offset().top - 48)
+            }, 1000, "easeInOutExpo");
+            return false;
+          }
+        }
+      });
+
+      // Closes responsive menu when a scroll trigger link is clicked
+      $('.js-scroll-trigger').click(function () {
+        $('.navbar-collapse').collapse('hide');
+      });
+
+      // Activate scrollspy to add active class to navbar items on scroll
+      $('body').scrollspy({
+        target: '#mainNav',
+        offset: 54
+      });
+
+      // Collapse the navbar when page is scrolled
+      $(window).scroll(function () {
+        if ($("#mainNav").offset().top > 100) {
+          $("#mainNav").addClass("navbar-shrink");
+        } else {
+          $("#mainNav").removeClass("navbar-shrink");
+        }
+      });
+
+      // Floating label headings for the contact form
+      $(function () {
+        $("body").on("input propertychange", ".floating-label-form-group", function (e) {
+          $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
+        }).on("focus", ".floating-label-form-group", function () {
+          $(this).addClass("floating-label-form-group-with-focus");
+        }).on("blur", ".floating-label-form-group", function () {
+          $(this).removeClass("floating-label-form-group-with-focus");
+        });
+      });
+
+    })(jQuery); // End of use strict
+
+    $(".hover").mouseleave(
+      function () {
+        $(this).removeClass("hover");
+      }
+    );
+  </script>
+</body>
+
 </html>

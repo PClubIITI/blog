@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.5.2">Jekyll</generator><link href="http://0.0.0.0:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/blog/" rel="alternate" type="text/html" /><updated>2017-09-15T01:26:54+05:30</updated><id>http://0.0.0.0:4000/blog/</id><title type="html">The Programming Club</title><subtitle>Indian Institute of Technology, Indore</subtitle><entry><title type="html">Binary indexed trees/ Fenwick trees</title><link href="http://0.0.0.0:4000/blog/fenwick-trees/" rel="alternate" type="text/html" title="Binary indexed trees/ Fenwick trees" /><published>2017-09-09T00:00:00+05:30</published><updated>2017-09-09T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/fenwick-trees</id><content type="html" xml:base="http://0.0.0.0:4000/blog/fenwick-trees/">&lt;p&gt;– Range Queries with Point/Range Updates&lt;/p&gt;
-
-&lt;h1 id=&quot;a-general-overview-&quot;&gt;A general overview:-&lt;/h1&gt;
-&lt;p&gt;Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.5.2">Jekyll</generator><link href="http://0.0.0.0:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/blog/" rel="alternate" type="text/html" /><updated>2017-09-19T20:01:26+05:30</updated><id>http://0.0.0.0:4000/blog/</id><title type="html">The Programming Club</title><subtitle>Indian Institute of Technology, Indore</subtitle><entry><title type="html">Binary indexed trees/ Fenwick trees</title><link href="http://0.0.0.0:4000/blog/fenwick-trees/" rel="alternate" type="text/html" title="Binary indexed trees/ Fenwick trees" /><published>2017-09-09T00:00:00+05:30</published><updated>2017-09-09T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/fenwick-trees</id><content type="html" xml:base="http://0.0.0.0:4000/blog/fenwick-trees/">&lt;p&gt;Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;Range Update with Point Query&lt;/li&gt;
   &lt;li&gt;Range Update with Range Query&lt;/li&gt;
@@ -46,6 +43,7 @@ Where Q is the number of Queries to perform&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;naïve-solution&quot;&gt;Naïve solution&lt;/h3&gt;
+
 &lt;p&gt;The naïve solution to this problem is very clear&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;We maintain an array of numbers, initialized to zero&lt;/li&gt;
@@ -55,14 +53,17 @@ Every output query takes O(1) time and every update query takes O(N) time, so in
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;a-slightly-different-solution&quot;&gt;A slightly different solution&lt;/h3&gt;
+
 &lt;p&gt;Instead of updating the whole range why not we just update two indexes. Wait, how! You must be asking, find out below :D&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;Maintain an array, initialized to zero&lt;/li&gt;
   &lt;li&gt;For every Update query, add Y to A[L], and subtract Y from A[R+1]&lt;/li&gt;
-  &lt;li&gt;For every Output query, print sum(A[1..X])&lt;br /&gt;
-How this works?&lt;br /&gt;
-Assume sum(A[X]) gives the correct answer before our update query. Now, when we add Y to A[L], sum(A[X]) for every index&amp;gt;=L will now be increased by Y. But, for index &amp;gt; R, the value must not be increased, therefore we decrease A[R+1] by Y, and now our algorithm gives correct answer for all the indexes again! Since the array was initialized to zero, it will definitely give the correct output for every output query before an update query. Since we just proved that every update maintains the correctness, we have proved that our algorithm is correct by induction. Awesome!&lt;/li&gt;
+  &lt;li&gt;For every Output query, print sum(A[1..X])&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;p&gt;How this works?&lt;/p&gt;
+
+&lt;p&gt;Assume sum(A[X]) gives the correct answer before our update query. Now, when we add Y to A[L], sum(A[X]) for every index&amp;gt;=L will now be increased by Y. But, for index &amp;gt; R, the value must not be increased, therefore we decrease A[R+1] by Y, and now our algorithm gives correct answer for all the indexes again! Since the array was initialized to zero, it will definitely give the correct output for every output query before an update query. Since we just proved that every update maintains the correctness, we have proved that our algorithm is correct by induction. Awesome!&lt;/p&gt;
 
 &lt;p&gt;Okay, so now update query is O(1), but now Output query is O(N), so the worst case complexity is 
 Still O(Q*N), and our solution will still TLE.
@@ -70,6 +71,7 @@ So, why did we even consider this approach?
 Notice something, in this approach update query is essentially updating two indexes (Point Update), and output query is basically sum of first X numbers (Range Query). Which algorithm is fast when it comes to point update range query? Déjà vu?&lt;/p&gt;
 
 &lt;h3 id=&quot;binary-indexed-tree-solution&quot;&gt;Binary Indexed Tree Solution&lt;/h3&gt;
+
 &lt;p&gt;The solution is basically building our BIT atop the array we defined in the previous approach.
  For every range update query A[L..R], we do two BIT updates, one at index L and the other at index R+1.
  For every point query A[X], we return BIT query at index X. 
@@ -99,7 +101,7 @@ C++ Implementation&lt;/p&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;  
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name>Kumar Abhinav</name></author><summary type="html">– Range Queries with Point/Range Updates</summary></entry><entry><title type="html">Tries: Pointer free Implementation</title><link href="http://0.0.0.0:4000/blog/tries-article/" rel="alternate" type="text/html" title="Tries: Pointer free Implementation" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/tries-article</id><content type="html" xml:base="http://0.0.0.0:4000/blog/tries-article/">&lt;p&gt;In this tutorial, we shall learn how to implement a trie without the use of pointers. The basics and working of a trie should be known beforehand. If not, please read the &lt;a href=&quot;https://threads-iiith.quora.com/Tutorial-on-Trie-and-example-problems&quot;&gt;prerequisuite&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;</content><author><name>Kumar Abhinav</name></author><summary type="html">Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees Range Update with Point Query Range Update with Range Query</summary></entry><entry><title type="html">Tries: Pointer free Implementation</title><link href="http://0.0.0.0:4000/blog/tries-article/" rel="alternate" type="text/html" title="Tries: Pointer free Implementation" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/tries-article</id><content type="html" xml:base="http://0.0.0.0:4000/blog/tries-article/">&lt;p&gt;In this tutorial, we shall learn how to implement a trie without the use of pointers. The basics and working of a trie should be known beforehand. If not, please read the &lt;a href=&quot;https://threads-iiith.quora.com/Tutorial-on-Trie-and-example-problems&quot;&gt;prerequisuite&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;We shall deal with a trie containing integers in its binary form.&lt;br /&gt;
 The implementation is given below. I shall explain each part further.&lt;/p&gt;
@@ -321,9 +323,7 @@ Also the value of &lt;code class=&quot;highlighter-rouge&quot;&gt;NEW&lt;/code&g
   &lt;li&gt;Changing &lt;code class=&quot;highlighter-rouge&quot;&gt;lastbit=31&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;lastbit=str.size()-1&lt;/code&gt; in the insert function.&lt;/li&gt;
   &lt;li&gt;Changing &lt;code class=&quot;highlighter-rouge&quot;&gt;curr=ch(x,i)&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;curr=str[i]-'a'&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;Also note that the fmin and fmax functions cannot be using in the case of tries containing strings!&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Gvs Akhil</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">In this tutorial, we shall learn how to implement a trie without the use of pointers. The basics and working of a trie should be known beforehand. If not, please read the prerequisuite.</summary></entry><entry><title type="html">Starting with CTF</title><link href="http://0.0.0.0:4000/blog/ctf-intro/" rel="alternate" type="text/html" title="Starting with CTF" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/ctf-intro</id><content type="html" xml:base="http://0.0.0.0:4000/blog/ctf-intro/">&lt;h2 id=&quot;wtf-is-ctf&quot;&gt;&lt;a href=&quot;https://ctftime.org/ctf-wtf/&quot;&gt;WTF is CTF?&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;From &lt;a href=&quot;https://en.wikipedia.org/wiki/Capture_the_flag&quot;&gt;Wikipedia&lt;/a&gt;:&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
+&lt;/ul&gt;</content><author><name>Gvs Akhil</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">In this tutorial, we shall learn how to implement a trie without the use of pointers. The basics and working of a trie should be known beforehand. If not, please read the prerequisuite.</summary></entry><entry><title type="html">Starting with CTF</title><link href="http://0.0.0.0:4000/blog/ctf-intro/" rel="alternate" type="text/html" title="Starting with CTF" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/ctf-intro</id><content type="html" xml:base="http://0.0.0.0:4000/blog/ctf-intro/">&lt;blockquote&gt;
   &lt;p&gt;Capture the flag (CTF) is a traditional outdoor game where two teams each have a flag (or other marker) and the objective is to capture the other team’s flag, located at the team’s “base,” and bring it safely back to their own base.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -454,8 +454,7 @@ flag{Example_Flag}       #Here's the flag
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Happy Hacking!&lt;/p&gt;</content><author><name>Kunal Gupta</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">WTF is CTF? From Wikipedia: Capture the flag (CTF) is a traditional outdoor game where two teams each have a flag (or other marker) and the objective is to capture the other team’s flag, located at the team’s “base,” and bring it safely back to their own base.</summary></entry><entry><title type="html">Inroduction to SAT solving using Z3</title><link href="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/" rel="alternate" type="text/html" title="Inroduction to SAT solving using Z3" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/Inroduction-toSAT-solving</id><content type="html" xml:base="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/">&lt;h4 id=&quot;sat-problem&quot;&gt;SAT problem&lt;/h4&gt;
-&lt;p&gt;In Computer Science a SAT(satisfiability) problem is defined as follows&lt;/p&gt;
+&lt;p&gt;Happy Hacking!&lt;/p&gt;</content><author><name>Kunal Gupta</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">Capture the flag (CTF) is a traditional outdoor game where two teams each have a flag (or other marker) and the objective is to capture the other team’s flag, located at the team’s “base,” and bring it safely back to their own base.</summary></entry><entry><title type="html">Introduction to SAT solving using Z3</title><link href="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/" rel="alternate" type="text/html" title="Introduction to SAT solving using Z3" /><published>2017-08-23T00:00:00+05:30</published><updated>2017-08-23T00:00:00+05:30</updated><id>http://0.0.0.0:4000/blog/Inroduction-toSAT-solving</id><content type="html" xml:base="http://0.0.0.0:4000/blog/Inroduction-toSAT-solving/">&lt;p&gt;In Computer Science a SAT(satisfiability) problem is defined as follows&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -685,4 +684,4 @@ That means 000 and 111 is not allowed in the game. This means sum of 3 continuos
 
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/W0WXGer.png&quot; alt=&quot;Solved&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;For me Z3 has always been handy not just in CTFs but a couple of optimization projects. Give it a try!&lt;/p&gt;</content><author><name>Sudhakar Verma</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">SAT problem In Computer Science a SAT(satisfiability) problem is defined as follows Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.</summary></entry></feed>
+&lt;p&gt;For me Z3 has always been handy not just in CTFs but a couple of optimization projects. Give it a try!&lt;/p&gt;</content><author><name>Sudhakar Verma</name></author><category term="tech" /><category term="code" /><category term="tutorial" /><summary type="html">In Computer Science a SAT(satisfiability) problem is defined as follows Given a propositional formula comprising AND, OR, NOT and boolean variables(TRUE or FALSE), is there a combination of variables that evaluates the formula to true.</summary></entry></feed>
