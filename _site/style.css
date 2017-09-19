@@ -122,8 +122,7 @@ section.success {
 }
 
 #main {
-  margin-top: 5em;
-  margin-bottom: 5em;
+  margin-top: 12em;
 }
 
 @media (max-width: 724px) {
