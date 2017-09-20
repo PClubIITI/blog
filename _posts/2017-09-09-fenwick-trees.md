@@ -2,6 +2,7 @@
 layout: post
 title: "Binary indexed trees/ Fenwick trees"
 author: "Kumar Abhinav" 
+date: 2017-08-23
 ---
 
 Binary Indexed trees are generally used in problems asking you to update or give the sum of a particular range. Here I am going to deal with two special cases of Fenwick Trees  

@@ -3,7 +3,7 @@
 layout: post
 title: "Introduction to SAT solving using Z3"
 description: "Little theory you should get (or maybe not)"
-date: 2017-08-23
+date: 2017-09-10
 author: "Sudhakar Verma"
 tags: [tech, code, tutorial]
 comments: true
